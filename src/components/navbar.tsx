@@ -10,13 +10,34 @@ const items = [
   { index: 3, name: "About", icon: <User size={18} />, targetId: "about" },
   { index: 4, name: "Education", icon: <GraduationCap size={18} />, targetId: "educations" },
   { index: 5, name: "Stack", icon: <Code size={18} />, targetId: "stack" },
-];
+]
 
 const Navbar = () => {
   const [isVertical, setIsVertical] = useState(false)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
-  const [darkMode, setDarkMode] = useState(false) // default light mode
+  const [darkMode, setDarkMode] = useState<boolean | null>(null)
 
+  useEffect(() => {
+    const stored = localStorage.getItem('darkMode')
+    let initialMode: boolean
+    if (stored === 'true') {
+      initialMode = true
+    } else if (stored === 'false') {
+      initialMode = false
+    } else {
+      initialMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    setDarkMode(initialMode)
+
+    if (initialMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
+
+  // Handle scroll and resize
   useEffect(() => {
     const handleScroll = () => {
       if (isSmallScreen) return
@@ -43,25 +64,8 @@ const Navbar = () => {
     }
   }, [isSmallScreen])
 
-  const handleClick = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      if (isVertical && !isSmallScreen) {
-        const navbarWidth = 20;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarWidth;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      } else {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   useEffect(() => {
+    console.log("darkmode",darkMode)
     if (darkMode) {
       document.documentElement.classList.add('dark')
     } else {
@@ -69,13 +73,37 @@ const Navbar = () => {
     }
   }, [darkMode])
 
-  const toggleDarkMode = () => setDarkMode(prev => !prev)
+  const handleClick = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      if (isVertical && !isSmallScreen) {
+        const navbarWidth = 20
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+        const offsetPosition = elementPosition - navbarWidth
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        })
+      } else {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    }
+  }
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      const newMode = !prev
+      localStorage.setItem('darkMode', newMode ? 'true' : 'false')
+      return newMode
+    })
+  }
 
   const showIconsOnly = isVertical || isSmallScreen
 
   return (
     <div
-      className={`top-0  z-50 p-4 text-sm font-extrabold transition-all duration-500 nav
+      className={`top-0 z-50 p-4 text-sm font-extrabold transition-all duration-500 nav
         ${isVertical || isSmallScreen ? 'fixed' : 'mt-8'}
         flex ${isVertical && !isSmallScreen ? 'flex-col items-center gap-8 w-fit -translate-x-[6rem]' : 'flex-row justify-between items-center w-full'}
         ${isSmallScreen ? 'dark:bg-[#1A1A1A]/90 backdrop-blur-lg p-6' : ''}
@@ -118,7 +146,7 @@ const Navbar = () => {
         )}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+          className="p-2  rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
           title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}

@@ -14,7 +14,7 @@ const educations = [
   {
     intitule: "Allal El Fassi",
     title: "Physical Sciences",
-    date: "2022 - 2020",
+    date: "2019 - 2020",
   },
 ];
 
