@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Mail, Folder, User, FileText, Briefcase, GraduationCap, Code } from 'lucide-react'
+import { Mail, Folder, User, FileText, Briefcase, GraduationCap, Code, Sun, Moon } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 const items = [
@@ -15,10 +15,11 @@ const items = [
 const Navbar = () => {
   const [isVertical, setIsVertical] = useState(false)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
+  const [darkMode, setDarkMode] = useState(false) // default light mode
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isSmallScreen) return 
+      if (isSmallScreen) return
       if (window.scrollY > 200) {
         setIsVertical(true)
       } else {
@@ -43,33 +44,41 @@ const Navbar = () => {
   }, [isSmallScreen])
 
   const handleClick = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    if (isVertical && !isSmallScreen) {
-      const navbarWidth = 20; 
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarWidth;
+    const element = document.getElementById(id);
+    if (element) {
+      if (isVertical && !isSmallScreen) {
+        const navbarWidth = 20;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarWidth;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    } else {
-      // default smooth scroll
-      element.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
-  }
-};
+  };
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode])
+
+  const toggleDarkMode = () => setDarkMode(prev => !prev)
 
   const showIconsOnly = isVertical || isSmallScreen
 
   return (
     <div
-      className={`top-0 z-50 p-4 text-sm font-extrabold transition-all duration-500 nav
+      className={`top-0  z-50 p-4 text-sm font-extrabold transition-all duration-500 nav
         ${isVertical || isSmallScreen ? 'fixed' : 'mt-8'}
         flex ${isVertical && !isSmallScreen ? 'flex-col items-center gap-8 w-fit -translate-x-[6rem]' : 'flex-row justify-between items-center w-full'}
-        ${isSmallScreen ? 'bg-[#1A1A1A]/90 backdrop-blur-lg p-6' : ''}
+        ${isSmallScreen ? 'dark:bg-[#1A1A1A]/90 backdrop-blur-lg p-6' : ''}
       `}
     >
       {(isVertical && !isSmallScreen) && (
@@ -82,7 +91,7 @@ const Navbar = () => {
           <button
             type="button"
             title="Online"
-            className="absolute -bottom-2 right-0 w-4 h-4 bg-green-600 rounded-full border-2 border-[#1A1A1A] animate-pulse focus:outline-none focus:ring-2 focus:ring-green-400 hover:bg-green-500"
+            className="absolute -bottom-2 right-0 w-4 h-4 bg-green-600 rounded-full border-2 dark:border-[#1A1A1A] animate-pulse focus:outline-none focus:ring-2 focus:ring-green-400 hover:bg-green-500"
             onClick={() => alert("You clicked the online status!")}
           />
         </div>
@@ -93,19 +102,28 @@ const Navbar = () => {
           <li
             key={item.index}
             onClick={() => handleClick(item.targetId)}
-            className='uppercase text-xs font-extrabold text-gray-300 cursor-pointer flex items-center gap-2'
+            className='uppercase text-xs font-extrabold dark:text-gray-300 text-[#1A1A1A] cursor-pointer flex items-center gap-2'
           >
             {showIconsOnly ? item.icon : item.name}
           </li>
         ))}
       </ul>
 
-      {!isVertical && !isSmallScreen && (
-        <button className="text-xs px-6 p-2 font-bold rounded-md flex items-center gap-2">
-          <span className="w-3 h-3 bg-green-600 rounded-full animate-pulse"></span>
-          Seeking opportunities
+      <div className={`flex items-center gap-4 ${isVertical && !isSmallScreen ? 'flex-col mt-4' : ''}`}>
+        {!isVertical && !isSmallScreen && (
+          <button className="text-xs px-6 p-2 font-bold rounded-md flex items-center gap-2">
+            <span className="w-3 h-3 bg-green-600 rounded-full animate-pulse"></span>
+            Seeking opportunities
+          </button>
+        )}
+        <button
+          onClick={toggleDarkMode}
+          className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+          title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
-      )}
+      </div>
     </div>
   )
 }

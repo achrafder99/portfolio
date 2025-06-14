@@ -62,15 +62,14 @@ const Projects = () => {
   };
 
   return (
- <section
+    <section
       className="scroll-mt-28 px-2 sm:px-6 md:px-4 max-w-7xl mx-auto"
       id="projects"
     >
-      <h2 className="text-xl text-[#ccc] font-extrabold mb-4  text-start md:text-left">
+      <h2 className="text-xl dark:text-[#ccc] font-extrabold mb-4  text-start md:text-left">
         Projects
       </h2>
 
-      {/* Grid for md and up, flex-col for smaller */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((proj, index) => (
           <motion.div
@@ -79,7 +78,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="bg-[#1A1A1A] border rounded-lg shadow-md flex flex-col"
+            className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-gray-700 rounded-lg shadow-md flex flex-col"
           >
             <div className="flex items-start justify-between gap-4 p-4">
               <div className="flex flex-col gap-3 flex-1">
@@ -93,7 +92,7 @@ const Projects = () => {
                   {proj.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-xs rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all"
+                      className="px-3 py-1 text-xs rounded-full dark:bg-[#282828]  dark:text-gray-300 border dark:border-none hover:bg-gray-700 transition-all"
                     >
                       {tag}
                     </span>
@@ -106,7 +105,8 @@ const Projects = () => {
                 rel="noopener noreferrer"
                 className="self-start"
               >
-                <section className="text-gray-700 bg-[#282828]/30 border backdrop-blur-md p-2 rounded-xl dark:text-gray-300 hover:text-black dark:hover:text-white cursor-pointer">
+                <section
+                  className="text-gray-700 dark:bg-[#282828]/30 border backdrop-blur-md p-2 rounded-xl dark:text-gray-300 hover:text-black dark:hover:text-white cursor-pointer">
                   <FaGithub color="#ccc" size={20} />
                 </section>
               </a>

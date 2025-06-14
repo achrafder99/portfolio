@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`bg-[#1A1A1A] ${cairo.variable} antialiased`}
+        className={`dark:bg-[#1A1A1A] ${cairo.variable} antialiased`}
       >
         {children}
       </body>

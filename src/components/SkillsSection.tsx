@@ -72,9 +72,9 @@ export default function SkillsSection() {
   }
 
   return (
-    <section className="text-white scroll-mt-28 " id="stack" >
+    <section className="text-white  scroll-mt-28 " id="stack" >
       <div className="container mx-auto px-4">
-        <h2 className="text-xl font-bold mb-2 mt-6 text-[#ccc]">Stacks</h2>
+        <h2 className="text-xl font-bold mb-2 mt-6 dark:text-[#ccc] text-[#1A1A1A]">Stacks</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  rounded-2xl mt-4 gap-4">
           {Object.keys(skills).map((key) => {
@@ -84,7 +84,7 @@ export default function SkillsSection() {
 
             return (
               <div key={key}>
-                <h1 className="text-white text-xs tracking-widest rounded-2xl font-semibold mb-2 uppercase">
+                <h1 className="dark:text-white text-[#1A1A1A] text-xs tracking-widest rounded-2xl font-semibold mb-2 uppercase">
                   {key}
                 </h1>
 
@@ -92,7 +92,7 @@ export default function SkillsSection() {
                   {visibleSkills.map((item, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-center text-gray-300 text-sm border p-1 rounded-2xl mt-6 gap-3"
+                      className="flex items-center dark:text-gray-300   text-sm border p-1 rounded-2xl mt-6 gap-3"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.08, duration: 0.4 }}
@@ -103,7 +103,7 @@ export default function SkillsSection() {
                           {skillIcons[item] || <Code size={16} />}
                         </div>
                       </div>
-                      <span className="truncate max-w-[120px]" title={item}>{item}</span>
+                      <span className="truncate max-w-[120px] dark:text-white text-[#1A1A1A]" title={item}>{item}</span>
                     </motion.div>
                   ))}
                 </div>

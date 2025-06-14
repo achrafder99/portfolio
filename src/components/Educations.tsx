@@ -24,7 +24,7 @@ const Educations = () => {
       className="p-4  max-w-5xl mx-auto scroll-mt-20 "
       id="educations"
     >
-      <h1 className="text-xl text-[#ccc] mb-2 font-bold  text-start md:text-left">
+      <h1 className="text-xl dark:text-[#ccc] mb-2 font-bold  text-start md:text-left">
         Education
       </h1>
 
