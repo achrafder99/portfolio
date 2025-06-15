@@ -77,7 +77,7 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-start gap-6">
-          <Avatar className="w-[8rem] h-[8rem] rounded-3xl -rotate-6 shadow-2xl mx-auto sm:mx-0 sm:w-32 sm:h-32 flex-shrink-0">
+          <Avatar className="w-[10rem] h-[10rem] rounded-3xl -rotate-6 shadow-2xl mx-auto sm:mx-0 sm:w-32 sm:h-32 flex-shrink-0">
             <AvatarImage src="https://cdn.intra.42.fr/users/098de47650121cad9ef881e5377c2630/adardour.jpg" />
             <AvatarFallback>AD</AvatarFallback>
           </Avatar>
@@ -95,7 +95,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <p className="text-start text-[#1A1A1A] dark:text-white mt-6">
+        <p className="text-start text-[#1A1A1A] dark:text-white">
           Constantly driven by challenge, I enjoy transforming complex problems into
           elegant, efficient solutions. Fluent in Arabic and English, with an
           intermediate command of French, I'm always ready to tackle ambitious
@@ -120,25 +120,6 @@ const Hero = () => {
             Resume
           </button>
         </div>
-
-        {/* Dark Mode Toggle Button */}
-        <div className="flex justify-center items-end">
-          <button
-            onClick={toggleDarkMode}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border dark:border-neutral-600 text-[#1A1A1A] dark:text-neutral-300 hover:bg-neutral-800 transition"
-          >
-            {darkMode ? (
-              <>
-                <Sun size={18} /> Light Mode
-              </>
-            ) : (
-              <>
-                <Moon size={18} /> Dark Mode
-              </>
-            )}
-          </button>
-        </div>
-
         <Contact />
       </div>
     </section>
