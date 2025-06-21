@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Cairo } from "next/font/google";
+import { Geist, Geist_Mono,Cairo,IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 const cairo = Cairo({
   subsets: ['latin'],
@@ -34,7 +39,7 @@ export default function RootLayout({
           <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={`dark:bg-[#1A1A1A] ${cairo.variable} antialiased`}
+        className={`dark:bg-[#1A1A1A] ${ibmPlexMono.className} antialiased`}
       >
         {children}
       </body>

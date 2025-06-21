@@ -53,7 +53,11 @@ const Hero = () => {
   }
 
   return (
-    <section
+    <div>
+      <div className='w-full min-h-screen absolute dark:bg-linear-to-b dark:from-sky-950  top-0 left-0 -z-10'>
+
+      </div>
+      <section
       className="mt-[4rem] lg:mt-10 flex text-center flex-col justify-center items-center w-full scroll-mt-32 p-4 rounded-xl font-sans"
       id="about"
     >
@@ -69,7 +73,7 @@ const Hero = () => {
         <div className="mb-6">
           <a
             href="#"
-            className="text-4xl md:text-6xl text-neutral-500 font-extrabold tracking-widest"
+            className="text-3xl md:text-4xl text-start dark:text-white text-gray-800 font-extrabold tracking-widest"
           >
             Achraf Dardour
           </a>
@@ -82,27 +86,31 @@ const Hero = () => {
             <AvatarFallback>AD</AvatarFallback>
           </Avatar>
 
-          <p className="text-start text-[#1A1A1A] dark:text-white sm:flex-1">
-            Passionate Full-Stack Developer building dynamic, scalable web applications. Specialized in{" "}
-            <span className="dark:text-white font-extrabold">JavaScript</span>,{" "}
-            <span className="dark:text-white font-extrabold">React</span>,{" "}
-            <span className="dark:text-white font-extrabold">Node.js</span>, and{" "}
-            <span className="dark:text-white font-extrabold">Django</span>, with a
-            strong focus on clean code, modern UI/UX, and high-performance
-            architectures. Experienced in Agile workflows, microservices, Docker,
-            and real-time data systems. I thrive in collaborative environments
-            where innovation and precision matter.
+          <p className="text-start text-[#1A1A1A] dark:text-white sm:flex-1 leading-relaxed text-base sm:text-sm">
+            Passionate <span className="font-semibold">Full-Stack Developer</span> building dynamic, scalable web applications.
+            Specialized in{" "}
+            <span className="font-bold text-[#6366F1]">JavaScript</span>,{" "}
+            <span className="font-bold text-[#6366F1]">React</span>,{" "}
+            <span className="font-bold text-[#6366F1]">Node.js</span>, and{" "}
+            <span className="font-bold text-[#6366F1]">Django</span>, with a strong focus on clean code,
+            modern <span className="font-semibold">UI/UX</span>, and high-performance architectures.
+            Experienced in{" "}
+            <span className="font-bold text-[#10B981]">Agile workflows</span>,{" "}
+            <span className="font-bold text-[#10B981]">microservices</span>,{" "}
+            <span className="font-bold text-[#10B981]">Docker</span>, and{" "}
+            <span className="font-bold text-[#10B981]">real-time data systems</span>.
+            I thrive in collaborative environments where <span className="italic">innovation</span> and <span className="italic">precision</span> matter.
           </p>
         </div>
 
-        <p className="text-start text-[#1A1A1A] dark:text-white">
+        <p className="text-start text-[#1A1A1A] dark:text-white text-sm mt-4">
           Constantly driven by challenge, I enjoy transforming complex problems into
           elegant, efficient solutions. Fluent in Arabic and English, with an
           intermediate command of French, I'm always ready to tackle ambitious
           projects and deliver meaningful results.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-6">
+        <div className="flex  flex-col sm:flex-row gap-4 mt-6">
           <button
             type="button"
             onClick={handleCopyEmail}
@@ -120,9 +128,9 @@ const Hero = () => {
             Resume
           </button>
         </div>
-        <Contact />
       </div>
     </section>
+    </div>
   )
 }
 

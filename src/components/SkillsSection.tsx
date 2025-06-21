@@ -74,7 +74,7 @@ export default function SkillsSection() {
   return (
     <section className="text-white  scroll-mt-28 " id="stack" >
       <div className="container mx-auto px-4">
-        <h2 className="text-xl font-bold mb-2 mt-6 dark:text-[#ccc] text-[#1A1A1A]">Stacks</h2>
+        <h2 className="text-xl font-bold mb-2 mt-6 dark:text-[#ccc] text-[#1A1A1A]">Stack</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  rounded-2xl mt-4 gap-4">
           {Object.keys(skills).map((key) => {

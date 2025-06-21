@@ -1,4 +1,5 @@
 import React from 'react';
+import Contact from './Contact';
 
 const Header = () => {
   const currentYear = new Date().getFullYear();
@@ -9,6 +10,7 @@ const Header = () => {
       <label htmlFor="Achraf Dardour" className='font-extrabold'>
         Achraf Dardour
       </label>
+      <Contact />
     </div>
   );
 };

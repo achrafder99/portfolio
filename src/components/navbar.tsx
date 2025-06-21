@@ -37,7 +37,6 @@ const Navbar = () => {
     }
   }, [])
 
-  // Handle scroll and resize
   useEffect(() => {
     const handleScroll = () => {
       if (isSmallScreen) return
@@ -106,7 +105,7 @@ const Navbar = () => {
       className={`top-0 z-50 p-4 text-sm font-extrabold transition-all duration-500 nav
         ${isVertical || isSmallScreen ? 'fixed' : 'mt-8'}
         flex ${isVertical && !isSmallScreen ? 'flex-col items-center gap-8 w-fit -translate-x-[6rem]' : 'flex-row justify-between items-center w-full'}
-        ${isSmallScreen ? 'dark:bg-[#1A1A1A]/90 backdrop-blur-lg p-6' : ''}
+        ${isSmallScreen ? 'dark:bg-sky-950/90 backdrop-blur-lg p-4' : ''}
       `}
     >
       {(isVertical && !isSmallScreen) && (
@@ -137,7 +136,7 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div className={`flex items-center gap-4 ${isVertical && !isSmallScreen ? 'flex-col mt-4' : ''}`}>
+      <div className={`flex items-center gap-4 ${isVertical && !isSmallScreen ? 'flex-col -translate-y-2' : ''}`}>
         {!isVertical && !isSmallScreen && (
           <button className="text-xs px-6 p-2 font-bold rounded-md flex items-center gap-2">
             <span className="w-3 h-3 bg-green-600 rounded-full animate-pulse"></span>
